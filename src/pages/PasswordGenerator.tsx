@@ -46,7 +46,8 @@ export function PasswordGenerator() {
     }
     setPassword(motdepasse);
     return password;
-}
+  }
+
   // fraguement
   return (
     <>
@@ -98,7 +99,7 @@ export function PasswordGenerator() {
           </div>
         </div>
         <StyledDivColumn>
-          <StyledButton>Copier le mot de passe</StyledButton>
+          <StyledButton onClick={() => {navigator.clipboard.writeText(password)}}>Copier le mot de passe</StyledButton>
           {/* <StyledButton>Enregistrer le mot de passe</StyledButton> */}
         </StyledDivColumn>
       </div>
