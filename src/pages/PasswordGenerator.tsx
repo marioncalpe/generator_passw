@@ -1,5 +1,6 @@
 import styled from "@emotion/styled";
 import { Title } from "../components/Title";
+import { useState } from "react";
 
 const StyledLabel = styled.text`
   color: white;
@@ -16,10 +17,21 @@ const StyledDivColumn = styled.div`
 `;
 
 export function PasswordGenerator() {
+
+  const [password, setPassword] = useState("bonjour");
+  const [type, setType] = useState("password");
+  const [lenght, setLength] = useState(8);
+
+  function handleClick(){
+    if(type === "password"){
+      setType("text");
+    }else{
+      setType("password")
+    }
+  }
   // fraguement
   return (
     <>
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css"></link>
       <div
         css={{
           display: "flex",
@@ -31,8 +43,8 @@ export function PasswordGenerator() {
         <StyledDivColumn>
           <StyledLabel>Mot de passe</StyledLabel>
           <div>
-            <input type="password" />
-            <button>
+            <input type={type} value={password} onChange={(event) => setPassword(event.target.value)}/>
+            <button onClick={handleClick}>
               <i className="bi bi-eye"></i>
             </button>
             <button>
@@ -43,8 +55,8 @@ export function PasswordGenerator() {
         </StyledDivColumn>
 
         <StyledDivColumn>
-          <StyledLabel>Longeur caractères : </StyledLabel>
-          <input type="range" min="8" max="24" />
+          <StyledLabel>Longeur caractères : {lenght}</StyledLabel>
+          <input type="range" min="8" max="24" value={lenght} onChange={(event) => setLength(parseInt(event.target.value))}/>
         </StyledDivColumn>
 
         <div
