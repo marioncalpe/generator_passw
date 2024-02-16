@@ -18,7 +18,7 @@ const StyledDivColumn = styled.div`
 
 export function PasswordGenerator() {
 
-  const [password, setPassword] = useState("bonjour");
+  const [password, setPassword] = useState("");
   const [type, setType] = useState("password");
   const [lenght, setLength] = useState(8);
 
@@ -29,6 +29,20 @@ export function PasswordGenerator() {
       setType("password")
     }
   }
+
+  function generateRandomPassword(lenght: number, capitole: boolean, number: boolean, specialChart: boolean): string {
+    let caracteres = 'abcdefghijklmnopqrstuvwxyz';
+    if (capitole) caracteres += 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
+    if (number) caracteres += '0123456789';
+    if (specialChart) caracteres += '!@#$%^&*()_+-=[]{}|;:,.<>?';
+
+    let motDePasse = '';
+    for (let i = 0; i < lenght; i++) {
+        const randomIndex: number = Math.floor(Math.random() * caracteres.length);
+        motDePasse += caracteres[randomIndex];
+    }
+    return motDePasse;
+}
   // fraguement
   return (
     <>
@@ -80,7 +94,7 @@ export function PasswordGenerator() {
         </div>
         <StyledDivColumn>
           <StyledButton>Copier le mot de passe</StyledButton>
-          <StyledButton>Enregistrer le mot de passe</StyledButton>
+          {/* <StyledButton>Enregistrer le mot de passe</StyledButton> */}
         </StyledDivColumn>
       </div>
     </>
