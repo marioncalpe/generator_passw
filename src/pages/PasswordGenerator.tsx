@@ -1,6 +1,5 @@
 import styled from "@emotion/styled";
 import { Title } from "../components/Title";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 const StyledLabel = styled.text`
   color: white;
@@ -20,6 +19,7 @@ export function PasswordGenerator() {
   // fraguement
   return (
     <>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css"></link>
       <div
         css={{
           display: "flex",
@@ -33,10 +33,10 @@ export function PasswordGenerator() {
           <div>
             <input type="password" />
             <button>
-              <img src="src\assets\eye.svg"></img>
+              <i className="bi bi-eye"></i>
             </button>
             <button>
-              <FontAwesomeIcon icon="fa-solid fa-dice" />
+              <i className="bi bi-shuffle"></i>
             </button>
           </div>
           
