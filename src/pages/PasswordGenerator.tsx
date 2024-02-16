@@ -21,6 +21,9 @@ export function PasswordGenerator() {
   const [password, setPassword] = useState("");
   const [type, setType] = useState("password");
   const [lenght, setLength] = useState(8);
+  const [capitole, setCapitole] = useState(false);
+  const [number, setNumber] = useState(false);
+  const [specialChart, setSpecialChart] = useState(false);
 
   function handleClick(){
     if(type === "password"){
@@ -36,12 +39,13 @@ export function PasswordGenerator() {
     if (number) caracteres += '0123456789';
     if (specialChart) caracteres += '!@#$%^&*()_+-=[]{}|;:,.<>?';
 
-    let motDePasse = '';
+    let motdepasse = "";
     for (let i = 0; i < lenght; i++) {
         const randomIndex: number = Math.floor(Math.random() * caracteres.length);
-        motDePasse += caracteres[randomIndex];
+        motdepasse += caracteres[randomIndex];
     }
-    return motDePasse;
+    setPassword(motdepasse);
+    return password;
 }
   // fraguement
   return (
@@ -61,7 +65,7 @@ export function PasswordGenerator() {
             <button onClick={handleClick}>
               <i className="bi bi-eye"></i>
             </button>
-            <button>
+            <button onClick={() => generateRandomPassword(lenght, capitole, number, specialChart)}>
               <i className="bi bi-shuffle"></i>
             </button>
           </div>
@@ -80,15 +84,16 @@ export function PasswordGenerator() {
           }}
         >
           <div>
-            <input type="checkbox" />
+            <input type="checkbox" checked={capitole} onChange={() => setCapitole((value)=>!value)}/>
             <StyledLabel>A-Z</StyledLabel>
           </div>
           <div>
-            <input type="checkbox" />
+            <input type="checkbox" checked={number} onChange={() => setNumber((value)=>!value)}/>
             <StyledLabel>0-9</StyledLabel>
           </div>
           <div>
-            <input type="checkbox" />
+            <input type="checkbox" checked={specialChart} onChange={() => setSpecialChart((value)=>!value)}/>
+            
             <StyledLabel>!@#</StyledLabel>
           </div>
         </div>
