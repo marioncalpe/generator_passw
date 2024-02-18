@@ -16,33 +16,47 @@ const StyledDivColumn = styled.div`
   gap: 8px;
 `;
 
-export function PasswordGenerator() {
+const StyledAction = styled.button`
+  background-color: transparent;
+  border: none;
+  color: #eee;
+  font-size: 20px;
+  &:hover {
+    color: #0082b0;
+  }
+`;
 
+export function PasswordGenerator() {
   const [password, setPassword] = useState("");
   const [type, setType] = useState("password");
-  const [lenght, setLength] = useState(8);
+  const [lenght, setLength] = useState(16);
   const [capitole, setCapitole] = useState(false);
   const [number, setNumber] = useState(false);
   const [specialChart, setSpecialChart] = useState(false);
 
-  function handleClick(){
-    if(type === "password"){
+  function handleClick() {
+    if (type === "password") {
       setType("text");
-    }else{
-      setType("password")
+    } else {
+      setType("password");
     }
   }
 
-  function generateRandomPassword(lenght: number, capitole: boolean, number: boolean, specialChart: boolean): string {
-    let caracteres = 'abcdefghijklmnopqrstuvwxyz';
-    if (capitole) caracteres += 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
-    if (number) caracteres += '0123456789';
-    if (specialChart) caracteres += '!@#$%^&*()_+-=[]{}|;:,.<>?';
+  function generateRandomPassword(
+    lenght: number,
+    capitole: boolean,
+    number: boolean,
+    specialChart: boolean
+  ): string {
+    let caracteres = "abcdefghijklmnopqrstuvwxyz";
+    if (capitole) caracteres += "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+    if (number) caracteres += "0123456789";
+    if (specialChart) caracteres += "!@#$%^&*()_+-=[]{}|;:,.<>?";
 
     let motdepasse = "";
     for (let i = 0; i < lenght; i++) {
-        const randomIndex: number = Math.floor(Math.random() * caracteres.length);
-        motdepasse += caracteres[randomIndex];
+      const randomIndex: number = Math.floor(Math.random() * caracteres.length);
+      motdepasse += caracteres[randomIndex];
     }
     setPassword(motdepasse);
     return password;
@@ -55,27 +69,47 @@ export function PasswordGenerator() {
         css={{
           display: "flex",
           flexDirection: "column",
-          gap: "25px"
+          gap: "25px",
         }}
       >
         <Title>Générateur de mot de passe</Title>
         <StyledDivColumn>
           <StyledLabel>Mot de passe</StyledLabel>
-          <div>
-            <input type={type} value={password} onChange={(event) => setPassword(event.target.value)}/>
-            <button onClick={handleClick}>
+          <div
+            css={{
+              display: "flex",
+              alignItems: "center",
+              gap: "5px",
+            }}
+          >
+            <input
+              size={40}
+              type={type}
+              value={password}
+              onChange={(event) => setPassword(event.target.value)}
+            />
+            <StyledAction onClick={handleClick}>
               <i className="bi bi-eye"></i>
-            </button>
-            <button onClick={() => generateRandomPassword(lenght, capitole, number, specialChart)}>
+            </StyledAction>
+            <StyledAction
+              onClick={() =>
+                generateRandomPassword(lenght, capitole, number, specialChart)
+              }
+            >
               <i className="bi bi-shuffle"></i>
-            </button>
+            </StyledAction>
           </div>
-          
         </StyledDivColumn>
 
         <StyledDivColumn>
           <StyledLabel>Longeur caractères : {lenght}</StyledLabel>
-          <input type="range" min="8" max="24" value={lenght} onChange={(event) => setLength(parseInt(event.target.value))}/>
+          <input
+            type="range"
+            min="8"
+            max="24"
+            value={lenght}
+            onChange={(event) => setLength(parseInt(event.target.value))}
+          />
         </StyledDivColumn>
 
         <div
@@ -85,21 +119,39 @@ export function PasswordGenerator() {
           }}
         >
           <div>
-            <input type="checkbox" checked={capitole} onChange={() => setCapitole((value)=>!value)}/>
+            <input
+              type="checkbox"
+              checked={capitole}
+              onChange={() => setCapitole((value) => !value)}
+            />
             <StyledLabel>A-Z</StyledLabel>
           </div>
           <div>
-            <input type="checkbox" checked={number} onChange={() => setNumber((value)=>!value)}/>
+            <input
+              type="checkbox"
+              checked={number}
+              onChange={() => setNumber((value) => !value)}
+            />
             <StyledLabel>0-9</StyledLabel>
           </div>
           <div>
-            <input type="checkbox" checked={specialChart} onChange={() => setSpecialChart((value)=>!value)}/>
-            
+            <input
+              type="checkbox"
+              checked={specialChart}
+              onChange={() => setSpecialChart((value) => !value)}
+            />
+
             <StyledLabel>!@#</StyledLabel>
           </div>
         </div>
         <StyledDivColumn>
-          <StyledButton onClick={() => {navigator.clipboard.writeText(password)}}>Copier le mot de passe</StyledButton>
+          <StyledButton
+            onClick={() => {
+              navigator.clipboard.writeText(password);
+            }}
+          >
+            Copier le mot de passe
+          </StyledButton>
           {/* <StyledButton>Enregistrer le mot de passe</StyledButton> */}
         </StyledDivColumn>
       </div>
