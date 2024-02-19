@@ -1,6 +1,7 @@
 import styled from "@emotion/styled";
 import { Title } from "../components/Title";
 import { useState } from "react";
+import { Link } from 'react-router-dom';
 
 const StyledLabel = styled.text`
   color: white;
@@ -65,6 +66,10 @@ export function PasswordGenerator() {
   // fraguement
   return (
     <>
+      <nav>
+        <Link to="/PasswordSave">PasswordSave</Link>
+        <Link to="/">Login</Link>
+      </nav>
       <div
         css={{
           display: "flex",
