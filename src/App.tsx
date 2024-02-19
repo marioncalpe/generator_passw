@@ -9,19 +9,42 @@ import { Login } from "./pages/Login";
 import { PasswordGenerator } from "./pages/PasswordGenerator";
 import { PasswordSave } from "./pages/PasswordSave";
 
-
 const router = createBrowserRouter([
   {
     path: "/",
-    element: <Login />,
+    element: (
+      <div>
+        <nav>
+          <Link to="/PasswordGenerator">PasswordGenerator</Link>
+          <Link to="/PasswordSave">PasswordSave</Link>
+        </nav>
+        <Login />
+      </div>
+    ),
   },
   {
     path: "/PasswordGenerator",
-    element: <PasswordGenerator />,
+    element: (
+      <div>
+        <nav>
+          <Link to="/">Login</Link>
+          <Link to="/PasswordSave">PasswordSave</Link>
+        </nav>
+        <PasswordGenerator />
+      </div>
+    ),
   },
   {
     path: "/PasswordSave",
-    element: <PasswordSave />,
+    element: (
+      <div>
+        <nav>
+          <Link to="/">Login</Link>
+          <Link to="/PasswordGenerator">PasswordGenerator</Link>
+        </nav>
+        <PasswordSave />
+      </div>
+    ),
   },
 ]);
 

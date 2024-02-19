@@ -66,10 +66,6 @@ export function PasswordGenerator() {
   // fraguement
   return (
     <>
-      <nav>
-        <Link to="/PasswordSave">PasswordSave</Link>
-        <Link to="/">Login</Link>
-      </nav>
       <div
         css={{
           display: "flex",
